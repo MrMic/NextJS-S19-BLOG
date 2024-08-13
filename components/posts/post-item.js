@@ -4,7 +4,6 @@ import Link from "next/link"
 import classes from "./post-item.module.css"
 
 function PostItem(props) {
-
   const { title, image, date, excerpt, slug } = props.post
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -19,7 +18,6 @@ function PostItem(props) {
   return (
     <li className={classes.post}>
       <Link href={linkPath} >
-
         <div className={classes.image}>
           <Image
             src={imagePath}
@@ -27,6 +25,7 @@ function PostItem(props) {
             width={300}
             height={200}
             layout="responsive"
+            priority={true}
           />
         </div>
         <div className={classes.content}>
@@ -34,7 +33,6 @@ function PostItem(props) {
           <time>{formattedDate}</time>
           <p>{excerpt}</p>
         </div>
-
       </Link>
     </li >
   )
