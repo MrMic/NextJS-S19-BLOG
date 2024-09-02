@@ -23,7 +23,7 @@ function handler(req, res) {
       name,
       message,
     };
-    console.log("🪚 ewMessage:", newMessage);
+    console.log("🪚 newMessage:", newMessage);
 
     res.status(201).json({ message: 'Successfully stored message! 💾', message: newMessage });
 
