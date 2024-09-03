@@ -1,11 +1,10 @@
-import ReactMardown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import ReactMardown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-import PostHeader from "./post-header"
-import classes from "./post-content.module.css"
+import PostHeader from "./post-header";
+import classes from "./post-content.module.css";
 import Image from "next/image";
-
 
 function PostContent(props) {
   const { post } = props;
@@ -27,7 +26,7 @@ function PostContent(props) {
     p(paragraph) {
       const { node } = paragraph;
 
-      if (node.children[0].tagName === 'img') {
+      if (node.children[0].tagName === "img") {
         const image = node.children[0];
 
         return (
@@ -47,13 +46,15 @@ function PostContent(props) {
 
     code(code) {
       const { className, children } = code;
-      const language = className.split('-')[1]; // className is something like language-js => We need the "js" part here
+      const language = className.split("-")[1]; // className is something like language-js => We need the "js" part here
       return (
         <SyntaxHighlighter
           style={atomDark}
           language={language}
           showLineNumbers={true}
-        >{children}</SyntaxHighlighter>
+        >
+          {children}
+        </SyntaxHighlighter>
       );
     },
   };
@@ -61,11 +62,9 @@ function PostContent(props) {
   return (
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath} />
-      <ReactMardown components={customRenderers}>
-        {post.content}
-      </ReactMardown>
+      <ReactMardown components={customRenderers}>{post.content}</ReactMardown>
     </article>
-  )
+  );
 }
 
-export default PostContent
+export default PostContent;
