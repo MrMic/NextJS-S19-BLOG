@@ -41,7 +41,8 @@ async function handler(req, res) {
     }
 
     // * INFO: 'nextjs-blog' is the name of the database
-    const db = client.db('nextjs-blog');
+    const db = process.env.DEV === 'dev' ? client.db('nextjs-blog-dev') : client.db('nextjs-blog');
+    // const db = client.db('nextjs-blog');
 
     try {
       const result = await db.collection('messages').insertOne(newMessage);
